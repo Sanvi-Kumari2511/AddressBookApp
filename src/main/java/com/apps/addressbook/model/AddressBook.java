@@ -6,33 +6,35 @@ import java.util.Scanner;
 
 public class AddressBook {
 
-	// contact list
+	private String addressBookName;
 	private List<Contact> contactList;
 
-	// constructor
-	public AddressBook() {
-		contactList = new ArrayList<>();
+	public AddressBook(String addressBookName) {
+		this.addressBookName = addressBookName;
+		this.contactList = new ArrayList<>();
 	}
 
-	// method to add a contact in contact list
+	public String getAddressBookName() {
+		return addressBookName;
+	}
+
 	public void addContact(Contact contact) {
+
 		contactList.add(contact);
 		System.out.println("Contact added successfully.");
 	}
 
-	// method to display all contact
 	public void displayContacts() {
+
 		for (Contact contact : contactList) {
 			System.out.println(contact);
 		}
 	}
 
-	// method to get all contact
 	public List<Contact> getContactList() {
 		return contactList;
 	}
 
-	// method to edit contact
 	public void editContact(String firstName) {
 
 		Scanner scanner = new Scanner(System.in);
@@ -40,8 +42,6 @@ public class AddressBook {
 		for (Contact contact : contactList) {
 
 			if (contact.getFirstName().equalsIgnoreCase(firstName)) {
-
-				System.out.println("Contact Found. Enter new details.");
 
 				System.out.println("Enter new Address:");
 				contact.setAddress(scanner.nextLine());
@@ -61,24 +61,26 @@ public class AddressBook {
 				System.out.println("Enter new Email:");
 				contact.setEmail(scanner.nextLine());
 
-				System.out.println("Contact Updated Successfully");
+				System.out.println("Contact updated successfully.");
 				return;
 			}
 		}
 
-		System.out.println("Contact not found");
+		System.out.println("Contact not found.");
 	}
 
-	// method to delete a contact
 	public void deleteContact(String firstName) {
+
 		for (int i = 0; i < contactList.size(); i++) {
-			Contact contact = contactList.get(i);
-			if (contact.getFirstName().equalsIgnoreCase(firstName)) {
+
+			if (contactList.get(i).getFirstName().equalsIgnoreCase(firstName)) {
+
 				contactList.remove(i);
 				System.out.println("Contact deleted successfully.");
 				return;
 			}
 		}
+
 		System.out.println("Contact not found.");
 	}
 }
