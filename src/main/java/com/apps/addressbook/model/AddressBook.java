@@ -10,7 +10,6 @@ public class AddressBook {
 	private List<Contact> contactList;
 
 	public AddressBook(String addressBookName) {
-
 		this.addressBookName = addressBookName;
 		this.contactList = new ArrayList<>();
 	}
@@ -23,7 +22,7 @@ public class AddressBook {
 		return contactList;
 	}
 
-	// UC7 Duplicate Check using Java Streams
+	// UC7 - Duplicate Check while adding contact
 	public void addContact(Contact contact) {
 
 		boolean duplicate = contactList.stream().anyMatch(c -> c.getFirstName().equalsIgnoreCase(contact.getFirstName())
@@ -47,29 +46,29 @@ public class AddressBook {
 
 	public void editContact(String firstName) {
 
-		Scanner sc = new Scanner(System.in);
+		Scanner scanner = new Scanner(System.in);
 
 		for (Contact contact : contactList) {
 
 			if (contact.getFirstName().equalsIgnoreCase(firstName)) {
 
 				System.out.println("Enter new Address:");
-				contact.setAddress(sc.nextLine());
+				contact.setAddress(scanner.nextLine());
 
 				System.out.println("Enter new City:");
-				contact.setCity(sc.nextLine());
+				contact.setCity(scanner.nextLine());
 
 				System.out.println("Enter new State:");
-				contact.setState(sc.nextLine());
+				contact.setState(scanner.nextLine());
 
 				System.out.println("Enter new Zip:");
-				contact.setZip(sc.nextLine());
+				contact.setZip(scanner.nextLine());
 
 				System.out.println("Enter new Phone:");
-				contact.setPhoneNumber(sc.nextLine());
+				contact.setPhoneNumber(scanner.nextLine());
 
 				System.out.println("Enter new Email:");
-				contact.setEmail(sc.nextLine());
+				contact.setEmail(scanner.nextLine());
 
 				System.out.println("Contact updated successfully.");
 				return;
@@ -92,5 +91,12 @@ public class AddressBook {
 		}
 
 		System.out.println("Contact not found.");
+	}
+
+	// UC11 - Sort Contacts Alphabetically by Name
+	public void sortContactsByName() {
+
+		contactList.stream().sorted((c1, c2) -> c1.getFirstName().compareToIgnoreCase(c2.getFirstName()))
+				.forEach(System.out::println);
 	}
 }
