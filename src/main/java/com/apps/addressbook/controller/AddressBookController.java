@@ -31,6 +31,8 @@ public class AddressBookController {
 			System.out.println("6.Search Person by State");
 			System.out.println("7.View Persons by City");
 			System.out.println("8.View Persons by State");
+			System.out.println("9.Count Contacts by City");
+			System.out.println("10.Count Contacts by State");
 			System.out.println("0.Exit");
 
 			choice = sc.nextInt();
@@ -80,6 +82,16 @@ public class AddressBookController {
 					System.out.println("State: " + s);
 					persons.forEach(System.out::println);
 				});
+				break;
+
+			case 9:
+				manager.countContactsByCity()
+						.forEach((c, count) -> System.out.println("City: " + c + " -> Count: " + count));
+				break;
+
+			case 10:
+				manager.countContactsByState()
+						.forEach((s, count) -> System.out.println("State: " + s + " -> Count: " + count));
 				break;
 			}
 

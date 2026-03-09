@@ -45,17 +45,31 @@ public class AddressBookManager {
 				.filter(contact -> contact.getState().equalsIgnoreCase(state)).collect(Collectors.toList());
 	}
 
-	// UC9 - View Persons grouped by City (Dictionary)
+	// UC9 - View Persons by City
 	public Map<String, List<Contact>> viewPersonsByCity() {
 
 		return addressBookMap.values().stream().flatMap(book -> book.getContactList().stream())
 				.collect(Collectors.groupingBy(Contact::getCity));
 	}
 
-	// UC9 - View Persons grouped by State (Dictionary)
+	// UC9 - View Persons by State
 	public Map<String, List<Contact>> viewPersonsByState() {
 
 		return addressBookMap.values().stream().flatMap(book -> book.getContactList().stream())
 				.collect(Collectors.groupingBy(Contact::getState));
+	}
+
+	// UC10 - Count Contacts by City
+	public Map<String, Long> countContactsByCity() {
+
+		return addressBookMap.values().stream().flatMap(book -> book.getContactList().stream())
+				.collect(Collectors.groupingBy(Contact::getCity, Collectors.counting()));
+	}
+
+	// UC10 - Count Contacts by State
+	public Map<String, Long> countContactsByState() {
+
+		return addressBookMap.values().stream().flatMap(book -> book.getContactList().stream())
+				.collect(Collectors.groupingBy(Contact::getState, Collectors.counting()));
 	}
 }
