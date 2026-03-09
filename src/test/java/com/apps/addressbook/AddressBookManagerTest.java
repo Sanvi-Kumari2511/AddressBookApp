@@ -13,7 +13,6 @@ public class AddressBookManagerTest {
 
 	@BeforeEach
 	void setup() {
-
 		manager = new AddressBookManager();
 	}
 
@@ -22,7 +21,7 @@ public class AddressBookManagerTest {
 
 		manager.createAddressBook("Family");
 
-		Assertions.assertTrue(manager.getAddressBook("Family") != null);
+		Assertions.assertNotNull(manager.getAddressBook("Family"));
 	}
 
 	@Test

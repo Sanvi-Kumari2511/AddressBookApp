@@ -1,8 +1,6 @@
 package com.apps.addressbook.controller;
 
-import java.util.List;
 import java.util.Scanner;
-
 import com.apps.addressbook.model.AddressBook;
 import com.apps.addressbook.model.Contact;
 import com.apps.addressbook.service.AddressBookManager;
@@ -18,12 +16,12 @@ public class AddressBookController {
 		String bookName = sc.nextLine();
 
 		manager.createAddressBook(bookName);
-
 		AddressBook addressBook = manager.getAddressBook(bookName);
 
 		int choice;
 
 		do {
+
 			System.out.println("\n1.Add Contact");
 			System.out.println("2.Edit Contact");
 			System.out.println("3.Delete Contact");
@@ -40,11 +38,13 @@ public class AddressBookController {
 				break;
 
 			case 2:
-				editContact(addressBook);
+				System.out.println("Enter First Name to Edit:");
+				addressBook.editContact(sc.nextLine());
 				break;
 
 			case 3:
-				deleteContact(addressBook);
+				System.out.println("Enter First Name to Delete:");
+				addressBook.deleteContact(sc.nextLine());
 				break;
 
 			case 4:
@@ -84,21 +84,5 @@ public class AddressBookController {
 		Contact contact = new Contact(firstName, lastName, address, city, state, zip, phone, email);
 
 		addressBook.addContact(contact);
-	}
-
-	private void editContact(AddressBook addressBook) {
-
-		System.out.println("Enter first name to edit:");
-		String name = sc.nextLine();
-
-		addressBook.editContact(name);
-	}
-
-	private void deleteContact(AddressBook addressBook) {
-
-		System.out.println("Enter first name to delete:");
-		String name = sc.nextLine();
-
-		addressBook.deleteContact(name);
 	}
 }

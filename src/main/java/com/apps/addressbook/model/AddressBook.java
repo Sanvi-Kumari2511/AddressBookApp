@@ -10,6 +10,7 @@ public class AddressBook {
 	private List<Contact> contactList;
 
 	public AddressBook(String addressBookName) {
+
 		this.addressBookName = addressBookName;
 		this.contactList = new ArrayList<>();
 	}
@@ -18,7 +19,20 @@ public class AddressBook {
 		return addressBookName;
 	}
 
+	public List<Contact> getContactList() {
+		return contactList;
+	}
+
+	// UC7 Duplicate Check using Java Streams
 	public void addContact(Contact contact) {
+
+		boolean duplicate = contactList.stream().anyMatch(c -> c.getFirstName().equalsIgnoreCase(contact.getFirstName())
+				&& c.getLastName().equalsIgnoreCase(contact.getLastName()));
+
+		if (duplicate) {
+			System.out.println("Duplicate Contact! Person already exists.");
+			return;
+		}
 
 		contactList.add(contact);
 		System.out.println("Contact added successfully.");
@@ -31,35 +45,31 @@ public class AddressBook {
 		}
 	}
 
-	public List<Contact> getContactList() {
-		return contactList;
-	}
-
 	public void editContact(String firstName) {
 
-		Scanner scanner = new Scanner(System.in);
+		Scanner sc = new Scanner(System.in);
 
 		for (Contact contact : contactList) {
 
 			if (contact.getFirstName().equalsIgnoreCase(firstName)) {
 
 				System.out.println("Enter new Address:");
-				contact.setAddress(scanner.nextLine());
+				contact.setAddress(sc.nextLine());
 
 				System.out.println("Enter new City:");
-				contact.setCity(scanner.nextLine());
+				contact.setCity(sc.nextLine());
 
 				System.out.println("Enter new State:");
-				contact.setState(scanner.nextLine());
+				contact.setState(sc.nextLine());
 
 				System.out.println("Enter new Zip:");
-				contact.setZip(scanner.nextLine());
+				contact.setZip(sc.nextLine());
 
 				System.out.println("Enter new Phone:");
-				contact.setPhoneNumber(scanner.nextLine());
+				contact.setPhoneNumber(sc.nextLine());
 
 				System.out.println("Enter new Email:");
-				contact.setEmail(scanner.nextLine());
+				contact.setEmail(sc.nextLine());
 
 				System.out.println("Contact updated successfully.");
 				return;

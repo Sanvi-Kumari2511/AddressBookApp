@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import com.apps.addressbook.model.Contact;
 
 public class ContactTest {
+
 	@Test
 	void givenContactDetails_whenContactObjectCreated_shouldReturnCorrectValues() {
 
@@ -61,7 +62,7 @@ public class ContactTest {
 
 		Contact contact = new Contact("Sanvi", "Kumari", "Rajiv Nagar", "Patna", "Bihar", "800024", "4567899134",
 				"sanvi123@gmail.com");
-		
+
 		String contactString = contact.toString();
 
 		Assertions.assertTrue(contactString.contains("Sanvi"));
@@ -81,8 +82,8 @@ public class ContactTest {
 	@Test
 	void givenContactObject_whenFieldsUpdated_shouldReflectUpdatedValues() {
 
-		Contact contact = new Contact("Sanvi", "Kumari", "Rajiv Nagar", "Patna", "Bihar", "800024", "4567899134",
-				"sanvi123@gmail.com");
+		Contact contact = new Contact("Rishabh", "Anand", "Danapur", "Patna", "Bihar", "800024", "9999999999",
+				"rahul@email.com");
 
 		contact.setCity("Patna");
 

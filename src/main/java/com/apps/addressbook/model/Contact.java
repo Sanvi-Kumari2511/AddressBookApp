@@ -1,9 +1,9 @@
 package com.apps.addressbook.model;
 
-//class representing a contact
+import java.util.Objects;
+
 public class Contact {
 
-	// contact attributes
 	private String firstName;
 	private String lastName;
 	private String address;
@@ -18,6 +18,7 @@ public class Contact {
 
 	public Contact(String firstName, String lastName, String address, String city, String state, String zip,
 			String phoneNumber, String email) {
+
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.address = address;
@@ -28,7 +29,6 @@ public class Contact {
 		this.email = email;
 	}
 
-	// getter and setter for contact attributes
 	public String getFirstName() {
 		return firstName;
 	}
@@ -93,34 +93,30 @@ public class Contact {
 		this.email = email;
 	}
 
-	// overridden toString method
 	@Override
 	public String toString() {
-		return "Contact{" + "firstName='" + firstName + '\'' + ", lastName='" + lastName + '\'' + ", address='"
-				+ address + '\'' + ", city='" + city + '\'' + ", state='" + state + '\'' + ", zip='" + zip + '\''
-				+ ", phoneNumber='" + phoneNumber + '\'' + ", email='" + email + '\'' + '}';
+
+		return "Contact{" + "firstName='" + firstName + '\'' + ", lastName='" + lastName + '\'' + ", city='" + city
+				+ '\'' + '}';
 	}
 
-	// overridden equals method
+	// Duplicate comparison
 	@Override
 	public boolean equals(Object obj) {
 
 		if (this == obj)
 			return true;
 
-		if (obj == null || getClass() != obj.getClass())
+		if (!(obj instanceof Contact))
 			return false;
 
 		Contact contact = (Contact) obj;
 
-		return firstName.equals(contact.firstName) && lastName.equals(contact.lastName)
-				&& address.equals(contact.address) && city.equals(contact.city) && state.equals(contact.state)
-				&& zip.equals(contact.zip) && phoneNumber.equals(contact.phoneNumber) && email.equals(contact.email);
+		return Objects.equals(firstName, contact.firstName) && Objects.equals(lastName, contact.lastName);
 	}
 
-	// overridden hashcode method
 	@Override
 	public int hashCode() {
-		return java.util.Objects.hash(firstName, lastName, address, city, state, zip, phoneNumber, email);
+		return Objects.hash(firstName, lastName);
 	}
 }
