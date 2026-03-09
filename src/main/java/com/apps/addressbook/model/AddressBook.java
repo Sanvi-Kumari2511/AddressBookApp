@@ -53,7 +53,7 @@ public class AddressBook {
 				contact.setState(sc.nextLine());
 
 				System.out.println("Enter new Zip:");
-                contact.setZip(sc.nextLine());
+				contact.setZip(sc.nextLine());
 
 				System.out.println("Enter new Phone:");
 				contact.setPhoneNumber(sc.nextLine());
@@ -67,5 +67,18 @@ public class AddressBook {
 		}
 
 		System.out.println("Contact not found");
+	}
+
+	// method to delete a contact
+	public void deleteContact(String firstName) {
+		for (int i = 0; i < contactList.size(); i++) {
+			Contact contact = contactList.get(i);
+			if (contact.getFirstName().equalsIgnoreCase(firstName)) {
+				contactList.remove(i);
+				System.out.println("Contact deleted successfully.");
+				return;
+			}
+		}
+		System.out.println("Contact not found.");
 	}
 }

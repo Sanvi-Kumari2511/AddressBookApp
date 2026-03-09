@@ -52,7 +52,6 @@ public class ContactTest {
 
 		Contact contact2 = new Contact("Rishabh", "Anand", "Danapur", "Patna", "Bihar", "800024", "9999999999",
 				"rishabh@gmail.com");
-
 		Assertions.assertNotEquals(contact1, contact2);
 	}
 

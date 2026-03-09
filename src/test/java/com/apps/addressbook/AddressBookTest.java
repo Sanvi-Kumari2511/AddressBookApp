@@ -17,19 +17,28 @@ public class AddressBookTest {
 	}
 
 	@Test
-	void givenExistingContact_whenEdited_shouldUpdateContactDetails() {
-
+	void givenContactExists_whenDeleted_shouldRemoveContact() {
 		Contact contact = new Contact("Sanvi", "Kumari", "Rajiv Nagar", "Patna", "Bihar", "800024", "4567899134",
 				"sanvi123@gmail.com");
 		
 		addressBook.addContact(contact);
-		// simulate edit
-		contact.setCity("Patna");
-		Assertions.assertEquals("Patna", addressBook.getContactList().get(0).getCity());
+		addressBook.deleteContact("Sanvi");
+		Assertions.assertTrue(addressBook.getContactList().isEmpty());
 	}
 
 	@Test
-	void givenMultipleContacts_whenEditingOne_shouldUpdateOnlyThatContact() {
+	void givenContactNotExists_whenDeleteAttempted_shouldNotChangeList() {
+		Contact contact = new Contact("Sanvi", "Kumari", "Rajiv Nagar", "Patna", "Bihar", "800024", "4567899134",
+				"sanvi123@gmail.com");
+		
+		addressBook.addContact(contact);
+		int sizeBefore = addressBook.getContactList().size();
+		addressBook.deleteContact("Rishabh");
+		Assertions.assertEquals(sizeBefore, addressBook.getContactList().size());
+	}
+
+	@Test
+	void givenMultipleContacts_whenOneDeleted_shouldRemoveOnlyThatContact() {
 		Contact contact1 = new Contact("Sanvi", "Kumari", "Rajiv Nagar", "Patna", "Bihar", "800024", "4567899134",
 				"sanvi123@gmail.com");
 		
@@ -38,26 +47,7 @@ public class AddressBookTest {
 		
 		addressBook.addContact(contact1);
 		addressBook.addContact(contact2);
-		// simulate edit
-		contact1.setCity("Delhi");
-		Assertions.assertEquals("Delhi", addressBook.getContactList().get(0).getCity());
-		Assertions.assertEquals("Patna", addressBook.getContactList().get(1).getCity());
+		addressBook.deleteContact("Sanvi");
+		Assertions.assertEquals(1, addressBook.getContactList().size());
 	}
-
-	@Test
-	void givenContactNotPresent_whenEditAttempted_shouldNotChangeListSize() {
-		Contact contact = new Contact("Sanvi", "Kumari", "Rajiv Nagar", "Patna", "Bihar", "800024", "4567899134",
-				"sanvi123@gmail.com");
-		
-		addressBook.addContact(contact);
-		int sizeBefore = addressBook.getContactList().size();
-		// simulate editing a non-existing contact
-		String nameToEdit = "Rishabh";
-		if (!addressBook.getContactList().get(0).getFirstName().equals(nameToEdit)) {
-			// nothing updated
-		}
-
-		Assertions.assertEquals(sizeBefore, addressBook.getContactList().size());
-	}
-
 }
