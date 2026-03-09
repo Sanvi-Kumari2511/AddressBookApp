@@ -49,10 +49,11 @@ public class ContactTest {
 
 		Contact contact1 = new Contact("Sanvi", "Kumari", "Rajiv Nagar", "Patna", "Bihar", "800024", "4567899134",
 				"sanvi123@gmail.com");
-		
-		Contact contact2 = new Contact("Rishabh", "Anand", "Danapur", "Patna", "Bihar", "800024", "9999999999",
-				"rahul@email.com");
 
+		Contact contact2 = new Contact("Rishabh", "Anand", "Danapur", "Patna", "Bihar", "800024", "9999999999",
+				"rishabh@gmail.com");
+
+		
 		Assertions.assertNotEquals(contact1, contact2);
 	}
 
@@ -60,8 +61,8 @@ public class ContactTest {
 	void givenContactObject_whenToStringCalled_shouldContainContactDetails() {
 
 		Contact contact = new Contact("Sanvi", "Kumari", "Rajiv Nagar", "Patna", "Bihar", "800024", "4567899134",
-			"sanvi123@gmail.com");
-
+				"sanvi123@gmail.com");
+		
 		String contactString = contact.toString();
 
 		Assertions.assertTrue(contactString.contains("Sanvi"));
@@ -81,9 +82,9 @@ public class ContactTest {
 	@Test
 	void givenContactObject_whenFieldsUpdated_shouldReflectUpdatedValues() {
 
-		Contact contact = new Contact("Sanvi", "Kumari", "Rajiv Nagar", "Patna", "Bihar", "800024", "4567899134",
-				"sanvi123@gmail.com");
-		
+		Contact contact = new Contact("Rishabh", "Anand", "Danapur", "Patna", "Bihar", "800024", "9999999999",
+				"rishabh@gmail.com");
+
 		contact.setCity("Patna");
 
 		Assertions.assertEquals("Patna", contact.getCity());
