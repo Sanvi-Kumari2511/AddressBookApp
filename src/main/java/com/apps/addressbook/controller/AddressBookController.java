@@ -1,6 +1,7 @@
 package com.apps.addressbook.controller;
 
 import java.util.Scanner;
+
 import com.apps.addressbook.model.AddressBook;
 import com.apps.addressbook.model.Contact;
 import com.apps.addressbook.service.AddressBookManager;
@@ -26,6 +27,8 @@ public class AddressBookController {
 			System.out.println("2.Edit Contact");
 			System.out.println("3.Delete Contact");
 			System.out.println("4.Display Contacts");
+			System.out.println("5.Search Person by City");
+			System.out.println("6.Search Person by State");
 			System.out.println("0.Exit");
 
 			choice = sc.nextInt();
@@ -49,6 +52,18 @@ public class AddressBookController {
 
 			case 4:
 				addressBook.displayContacts();
+				break;
+
+			case 5:
+				System.out.println("Enter City:");
+				String city = sc.nextLine();
+				manager.searchPersonByCity(city).forEach(System.out::println);
+				break;
+
+			case 6:
+				System.out.println("Enter State:");
+				String state = sc.nextLine();
+				manager.searchPersonByState(state).forEach(System.out::println);
 				break;
 			}
 
