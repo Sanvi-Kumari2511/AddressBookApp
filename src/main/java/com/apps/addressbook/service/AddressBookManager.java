@@ -31,17 +31,31 @@ public class AddressBookManager {
 		return addressBookMap;
 	}
 
-	// UC8 - Search Person by City across all AddressBooks
+	// UC8 - Search Person by City
 	public List<Contact> searchPersonByCity(String city) {
 
 		return addressBookMap.values().stream().flatMap(book -> book.getContactList().stream())
 				.filter(contact -> contact.getCity().equalsIgnoreCase(city)).collect(Collectors.toList());
 	}
 
-	// UC8 - Search Person by State across all AddressBooks
+	// UC8 - Search Person by State
 	public List<Contact> searchPersonByState(String state) {
 
 		return addressBookMap.values().stream().flatMap(book -> book.getContactList().stream())
 				.filter(contact -> contact.getState().equalsIgnoreCase(state)).collect(Collectors.toList());
+	}
+
+	// UC9 - View Persons grouped by City (Dictionary)
+	public Map<String, List<Contact>> viewPersonsByCity() {
+
+		return addressBookMap.values().stream().flatMap(book -> book.getContactList().stream())
+				.collect(Collectors.groupingBy(Contact::getCity));
+	}
+
+	// UC9 - View Persons grouped by State (Dictionary)
+	public Map<String, List<Contact>> viewPersonsByState() {
+
+		return addressBookMap.values().stream().flatMap(book -> book.getContactList().stream())
+				.collect(Collectors.groupingBy(Contact::getState));
 	}
 }
