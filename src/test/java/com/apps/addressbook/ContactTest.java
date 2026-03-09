@@ -52,6 +52,7 @@ public class ContactTest {
 
 		Contact contact2 = new Contact("Rishabh", "Anand", "Danapur", "Patna", "Bihar", "800024", "9999999999",
 				"rishabh@gmail.com");
+
 		Assertions.assertNotEquals(contact1, contact2);
 	}
 
@@ -60,7 +61,7 @@ public class ContactTest {
 
 		Contact contact = new Contact("Sanvi", "Kumari", "Rajiv Nagar", "Patna", "Bihar", "800024", "4567899134",
 				"sanvi123@gmail.com");
-
+		
 		String contactString = contact.toString();
 
 		Assertions.assertTrue(contactString.contains("Sanvi"));
@@ -82,7 +83,7 @@ public class ContactTest {
 
 		Contact contact = new Contact("Sanvi", "Kumari", "Rajiv Nagar", "Patna", "Bihar", "800024", "4567899134",
 				"sanvi123@gmail.com");
-		
+
 		contact.setCity("Patna");
 
 		Assertions.assertEquals("Patna", contact.getCity());

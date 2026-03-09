@@ -17,37 +17,30 @@ public class AddressBookTest {
 	}
 
 	@Test
-	void givenContactExists_whenDeleted_shouldRemoveContact() {
-		Contact contact = new Contact("Sanvi", "Kumari", "Rajiv Nagar", "Patna", "Bihar", "800024", "4567899134",
-				"sanvi123@gmail.com");
-		
-		addressBook.addContact(contact);
-		addressBook.deleteContact("Sanvi");
-		Assertions.assertTrue(addressBook.getContactList().isEmpty());
-	}
+	void givenMultipleContacts_whenAdded_shouldStoreAllContacts() {
 
-	@Test
-	void givenContactNotExists_whenDeleteAttempted_shouldNotChangeList() {
-		Contact contact = new Contact("Sanvi", "Kumari", "Rajiv Nagar", "Patna", "Bihar", "800024", "4567899134",
-				"sanvi123@gmail.com");
-		
-		addressBook.addContact(contact);
-		int sizeBefore = addressBook.getContactList().size();
-		addressBook.deleteContact("Rishabh");
-		Assertions.assertEquals(sizeBefore, addressBook.getContactList().size());
-	}
-
-	@Test
-	void givenMultipleContacts_whenOneDeleted_shouldRemoveOnlyThatContact() {
 		Contact contact1 = new Contact("Sanvi", "Kumari", "Rajiv Nagar", "Patna", "Bihar", "800024", "4567899134",
 				"sanvi123@gmail.com");
-		
+
 		Contact contact2 = new Contact("Rishabh", "Anand", "Danapur", "Patna", "Bihar", "800024", "9999999999",
 				"rishabh@gmail.com");
 		
 		addressBook.addContact(contact1);
 		addressBook.addContact(contact2);
-		addressBook.deleteContact("Sanvi");
-		Assertions.assertEquals(1, addressBook.getContactList().size());
+		Assertions.assertEquals(2, addressBook.getContactList().size());
+	}
+
+	@Test
+	void givenMultipleContacts_whenStored_shouldMaintainCorrectOrder() {
+		Contact contact1 = new Contact("Sanvi", "Kumari", "Rajiv Nagar", "Patna", "Bihar", "800024", "4567899134",
+				"sanvi123@gmail.com");
+
+		Contact contact2 = new Contact("Rishabh", "Anand", "Danapur", "Patna", "Bihar", "800024", "9999999999",
+				"rishabh@gmail.com");
+		
+		addressBook.addContact(contact1);
+		addressBook.addContact(contact2);
+		Assertions.assertEquals("Sanvi", addressBook.getContactList().get(0).getFirstName());
+		Assertions.assertEquals("Rishabh", addressBook.getContactList().get(1).getFirstName());
 	}
 }

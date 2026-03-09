@@ -35,7 +35,7 @@ public class AddressBook {
 	// method to edit contact
 	public void editContact(String firstName) {
 
-		Scanner sc = new Scanner(System.in);
+		Scanner scanner = new Scanner(System.in);
 
 		for (Contact contact : contactList) {
 
@@ -44,22 +44,22 @@ public class AddressBook {
 				System.out.println("Contact Found. Enter new details.");
 
 				System.out.println("Enter new Address:");
-				contact.setAddress(sc.nextLine());
+				contact.setAddress(scanner.nextLine());
 
 				System.out.println("Enter new City:");
-				contact.setCity(sc.nextLine());
+				contact.setCity(scanner.nextLine());
 
 				System.out.println("Enter new State:");
-				contact.setState(sc.nextLine());
+				contact.setState(scanner.nextLine());
 
 				System.out.println("Enter new Zip:");
-				contact.setZip(sc.nextLine());
+				contact.setZip(scanner.nextLine());
 
 				System.out.println("Enter new Phone:");
-				contact.setPhoneNumber(sc.nextLine());
+				contact.setPhoneNumber(scanner.nextLine());
 
 				System.out.println("Enter new Email:");
-				contact.setEmail(sc.nextLine());
+				contact.setEmail(scanner.nextLine());
 
 				System.out.println("Contact Updated Successfully");
 				return;
